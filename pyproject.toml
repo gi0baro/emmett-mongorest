@@ -34,9 +34,8 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-emmett = { git = "https://github.com/emmett-framework/emmett.git", rev = "0a7bedc", allow-prereleases = true }
-emmett_mongo = { git = "https://github.com/gi0baro/emmett-mongo.git", rev = "05ac005", allow-prereleases = true }
-emmett_rest = { git = "https://github.com/emmett-framework/rest.git", rev = "a6701fc", allow-prereleases = true }
+emmett_mongo = { git = "https://github.com/gi0baro/emmett-mongo.git", rev = "68b33fd", allow-prereleases = true }
+emmett_rest = "~1.0.0"
 pydantic = "1.4"
 
 [tool.poetry.dev-dependencies]

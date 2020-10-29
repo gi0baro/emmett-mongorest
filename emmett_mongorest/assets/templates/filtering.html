@@ -1,0 +1,75 @@
+{{
+    operators = [
+        ("$eq", "any", "matches values equal to argument"),
+        ("$ne", "any", "matches values not equal to argument"),
+        ("$and", "list[mapping[any]]", "logical AND"),
+        ("$or", "list[mapping[any]]", "logical OR"),
+        ("$nor", "list[mapping[any]]", "logical NOR"),
+        ("$not", "mapping[any]", "invert argument"),
+        ("$in", "list[any]", "matches values equal to any argument element"),
+        ("$nin", "list[any]", "matches values not equal to argument elements"),
+        ("$lt", "any", "matches values less than argument"),
+        ("$gt", "any", "matches values greater than argument"),
+        ("$lte", "any", "matches values less or equal than argument"),
+        ("$gte", "any", "matches values greater or equal than argument"),
+        ("$exists", "boolean", "matches value existence"),
+        ("$regex", "string", "regex match (case sensitive)"),
+        ("$iregex", "string", "regex match (case insensitive)")
+    ]
+}}
+
+<div class="doc-block">
+    <div class="doc-block-text">
+        <h2 id="filtering">Filtering</h2>
+        <p>
+            API resources implementing "list" methods might have support for filtering.
+            These list API methods share a common behaviour and filtering language, using the <code>where</code> parameter.
+            The value for such parameter should be a JSON encoded object containing queries following the language specifications.
+        </p>
+    </div>
+</div>
+<div class="doc-block">
+    <div class="doc-block-text">
+        <h4>Filtering operators</h4>
+
+        <table>
+            <tr>
+                <th>Operator</th>
+                <th>Argument type</th>
+                <th>Description</th>
+            </tr>
+            {{ for operator in operators: }}
+            <tr>
+                <td><code>{{ =operator[0] }}</code></td>
+                <td class="param-details">{{ =operator[1] }}</td>
+                <td>{{ =operator[2] }}</td>
+            </tr>
+            {{ pass }}
+        </table>
+
+        <p>
+            The final condition condition should always have fields' names as keys
+            (except for <code>$and</code>, <code>$or</code>, <code>$not</code>)
+            and operators as values, where <code>$eq</code> is the default one.
+        </p>
+
+    </div>
+    <div class="doc-block-samples">
+        <code-block title="Filter object" lang="json">
+            <pre>
+                <code>
+{
+  "field_a": true,
+  "field_b": {"$gte": 3},
+  "$or": [
+    {"field_c": 5},
+    {"field_c": {"$lte": 3}}
+  ],
+  "field_d": {"$in": ["foo", "bar"]},
+  "field_e": {"$not": {"$in": ["foo", "bar"]}}
+}
+                </code>
+            </pre>
+        </code-block>
+    </div>
+</div>

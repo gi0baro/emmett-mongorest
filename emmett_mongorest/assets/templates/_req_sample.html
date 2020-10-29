@@ -1,0 +1,41 @@
+{{ if method == "get": }}
+{{ full_path = f"{hostname}{path}/:id" }}
+<multi-code-sample lang="curl">
+    {{ include "code_samples/get/curl.html" }}
+</multi-code-sample>
+<multi-code-sample lang="python">
+    {{ include "code_samples/get/python.html" }}
+</multi-code-sample>
+{{ elif method == "create": }}
+{{ full_path = f"{hostname}{path}" }}
+<multi-code-sample lang="curl">
+    {{ include "code_samples/post/curl.html" }}
+</multi-code-sample>
+<multi-code-sample lang="python">
+    {{ include "code_samples/post/python.html" }}
+</multi-code-sample>
+{{ elif method == "update": }}
+{{ full_path = f"{hostname}{path}/:id" }}
+<multi-code-sample lang="curl">
+    {{ include "code_samples/put/curl.html" }}
+</multi-code-sample>
+<multi-code-sample lang="python">
+    {{ include "code_samples/put/python.html" }}
+</multi-code-sample>
+{{ elif method == "delete": }}
+{{ full_path = f"{hostname}{path}/:id" }}
+<multi-code-sample lang="curl">
+    {{ include "code_samples/delete/curl.html" }}
+</multi-code-sample>
+<multi-code-sample lang="python">
+    {{ include "code_samples/delete/python.html" }}
+</multi-code-sample>
+{{ elif method == "index": }}
+{{ full_path = f"{hostname}{path}" }}
+<multi-code-sample lang="curl">
+    {{ include "code_samples/get/curl.html" }}
+</multi-code-sample>
+<multi-code-sample lang="python">
+    {{ include "code_samples/get/python.html" }}
+</multi-code-sample>
+{{ pass }}

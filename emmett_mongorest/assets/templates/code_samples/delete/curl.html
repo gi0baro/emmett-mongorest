@@ -1,0 +1,9 @@
+<pre>
+    <code>
+curl {{ =full_path }} \
+  -X DELETE {{ if headers: }}\{{ pass }}
+  {{ for idx, el in enumerate(headers.items()): }}
+  -H "{{ =el[0] }}:{{ =el[1] }}" {{ if idx != len(headers) - 1: }}\{{ pass }}
+  {{ pass }}
+    </code>
+</pre>

@@ -1,0 +1,16 @@
+<pre>
+    <code>
+import requests
+
+requests.delete(
+    "{{ =full_path }}"{{ if headers: }},{{ pass }}
+    {{ if headers: }}
+    headers={
+        {{ for key, val in headers.items(): }}
+        "{{ =key }}": {{ =repr(val) }},
+        {{ pass }}
+    }{{ if data :}},{{ pass }}
+    {{ pass }}
+)
+    </code>
+</pre>

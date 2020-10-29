@@ -1,0 +1,23 @@
+<pre>
+    <code>
+import requests
+
+requests.get(
+    "{{ =full_path }}"{{ if headers or data: }},{{ pass }}
+    {{ if headers: }}
+    headers={
+        {{ for key, val in headers.items(): }}
+        "{{ =key }}": {{ =repr(val) }},
+        {{ pass }}
+    }{{ if data :}},{{ pass }}
+    {{ pass }}
+    {{ if data: }}
+    params={
+        {{ for key, val in data.items(): }}
+        "{{ =key }}": {{ =repr(val) }},
+        {{ pass }}
+    }
+    {{ pass }}
+)
+    </code>
+</pre>

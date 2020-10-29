@@ -1,0 +1,4 @@
+-e git+https://github.com/gi0baro/emmett-mongo.git@68b33fd05344aaa164ded621dccc02902845938d#egg=emmett-mongo
+emmett-rest==1.0.0
+markdown2==2.3.10
+pydantic==1.4

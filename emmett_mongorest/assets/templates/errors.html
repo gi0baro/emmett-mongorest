@@ -1,0 +1,53 @@
+{{
+    codes = {
+        "2xx - OK": "Everything worked as expected.",
+        "400 - Bad request": "The request was unacceptable, often due to missing a required parameter.",
+        "401 - Not authorized": "The request is missing authorization requirements.",
+        "403 - Forbidden": "The resource is not accessible with current permissions.",
+        "404 - Not found": "The requested resource doesn't exist.",
+        "409 - Conflict": "The request conflicts with another request.",
+        "429 - Too many requests": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+        "5xx - Server errors": "Something went wrong on API's end."
+    }
+}}
+
+<div class="doc-block">
+    <div class="doc-block-text">
+        <h2 id="errors">Errors</h2>
+
+        <p>
+            {{ =title }} uses conventional HTTP response codes to indicate the success or failure of an API request.
+            In general: Codes in the 2xx range indicate success.
+            Codes in the 4xx range indicate an error that failed given the information provided
+            (e.g., a required parameter was omitted, a charge failed, etc.).
+            Codes in the 5xx range indicate an error with API's servers.
+        </p>
+        <p>
+            Some 4xx errors that could be handled programmatically include an <code>errors</code> attribute
+            in response which includes details about the error reported.
+        </p>
+
+        <h4>HTTP status codes</h4>
+
+        <ul>
+            {{ for code, desc in codes.items(): }}
+            <li><strong>{{ =code }}</strong>: {{ =desc }}</li>
+            {{ pass }}
+        </ul>
+
+        <h4>Returns</h4>
+
+        Returns an object with the following attributes:
+
+        <ul class="attributes">
+            <li>
+                <span class="attr">
+                    errors
+                </span>
+                <span class="attr-details">
+                    mapping[string, any]
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

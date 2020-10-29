@@ -1,0 +1,12 @@
+<pre>
+    <code>
+curl {{ =full_path }} \
+  -X PUT {{ if headers or data: }}\{{ pass }}
+  {{ for idx, el in enumerate(headers.items()): }}
+  -H "{{ =el[0] }}:{{ =el[1] }}" {{ if idx != len(headers) - 1 or data: }}\{{ pass }}
+  {{ pass }}
+  {{ for idx, el in enumerate(data.items()): }}
+  -d {{ =el[0] }}="{{ =el[1] }}" {{ if idx != len(data) - 1: }}\{{ pass }}
+  {{ pass }}
+    </code>
+</pre>

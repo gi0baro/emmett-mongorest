@@ -18,7 +18,7 @@ from types import MethodType
 from typing import Any, Dict, get_type_hints
 
 import click
-import orjson
+import rapidjson
 
 from emmett import AppModule, response, url
 from emmett._internal import get_root_path
@@ -26,7 +26,7 @@ from emmett.app import ymlload, ymlLoader
 from emmett.ctx import current
 from emmett.html import asis
 from emmett.http import HTTPFile
-from emmett.serializers import _json_dumps, _json_default
+from emmett.serializers import _json_default
 from emmett.utils import cachedprop
 from markdown2 import markdown
 from renoir import Renoir
@@ -77,10 +77,12 @@ class DocsBuilder:
         self.templater = Renoir(path=os.path.join(self.docs.assets_path, "templates"))
 
     def _json_dumps(self, data: Dict[str, Any]) -> bytes:
-        return _json_dumps(
+        return rapidjson.dumps(
             data,
             default=_json_default,
-            option=orjson.OPT_NON_STR_KEYS | orjson.OPT_NAIVE_UTC | orjson.OPT_INDENT_2
+            datetime_mode=rapidjson.DM_ISO8601 | rapidjson.DM_NAIVE_IS_UTC,
+            number_mode=rapidjson.NM_NATIVE | rapidjson.NM_DECIMAL,
+            indent=2
         )
 
     def _build_object_example(
